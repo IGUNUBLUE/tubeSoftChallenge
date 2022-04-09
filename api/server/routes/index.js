@@ -1,5 +1,11 @@
-import express from 'express';
+import { Router } from "express";
 
-let router = express.Router();
-// ..stuff below
+const router = Router();
+
+import  productGetController from "./product/get"
+
+// Routes #####################################################################
+// Product.
+router.use("/product", productGetController);
+
 export default router;
