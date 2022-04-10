@@ -15,5 +15,5 @@ bld/
 # My exeptions
 node_modules/
 .env
-[Dd]ist-server/
+[Dd]ist/
 .DS_Store
