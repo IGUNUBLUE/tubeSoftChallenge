@@ -7,7 +7,7 @@ import app from '../app';
 import debugLib from 'debug';
 import http from 'http';
 import { sequelize as dbConnection } from '../database';
-import logger from '../logger';
+import logger from '../lib/logger';
 
 const log = logger()
 const debug = debugLib('api:server');
