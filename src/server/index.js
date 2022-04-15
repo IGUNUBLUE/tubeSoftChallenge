@@ -7,7 +7,7 @@ import http from "http";
 import { existsSync } from "fs";
 
 import routes from "./routes";
-import { sequelize as dbConnection } from "./db";
+import sequelize from "./db";
 import winstonLogger from "./lib/logger";
 
 let app = express();
@@ -39,7 +39,7 @@ app.set("port", port);
  * DB sync
  */
 
-dbConnection
+sequelize
 	.sync({ force: false })
 	.then(() => {
 		server.listen(port, () => {
