@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import { readdirSync } from "fs";
 import { basename as _basename, join } from "path";
+import associations from "./associations";
 
 require("dotenv").config({ path: "./.env" });
 
@@ -22,7 +23,7 @@ const prodConnectionParams = {
 		timestamps: false,
 	},
 };
-export const sequelize = new Sequelize(
+const sequelize = new Sequelize(
 	`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
 	environment !== "production"
 		? {
@@ -52,3 +53,10 @@ let capsEntries = entries.map((entry) => [
 ]);
 
 sequelize.models = Object.fromEntries(capsEntries);
+
+/*
+ * associations
+ */
+associations(sequelize)
+
+export default sequelize;
