@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { sequelize } from "../../db";
+import sequelize from "../../db";
 
 let router = Router();
-const { Product } = sequelize.models;
+const { Products } = sequelize.models;
 
 router.get("/", async (req, res) => {
 	try {
-		const products = await Product.findAll();
+		const products = await Products.findAll();
 		console.log(products);
 
 		if (products === null) {
