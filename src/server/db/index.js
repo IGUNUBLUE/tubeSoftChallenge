@@ -7,8 +7,9 @@ require("dotenv").config({ path: "./.env" });
 
 const environment = process.env.NODE_ENV || "development";
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT, SEQUELIZE_DEBUG } = process.env;
+console.log(Boolean(SEQUELIZE_DEBUG))
 const prodConnectionParams = {
-	logging: SEQUELIZE_DEBUG,
+	logging: Boolean(SEQUELIZE_DEBUG),
 	native: true,
 	dialectOptions: {
 		ssl: {
@@ -27,7 +28,7 @@ const sequelize = new Sequelize(
 	`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
 	environment !== "production"
 		? {
-				logging: SEQUELIZE_DEBUG, // set to console.log to see the raw SQL queries
+				logging: Boolean(SEQUELIZE_DEBUG), // set to console.log to see the raw SQL queries
 				native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 		  }
 		: prodConnectionParams
