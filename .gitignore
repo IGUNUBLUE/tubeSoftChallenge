@@ -15,5 +15,6 @@ bld/
 # My exeptions
 node_modules/
 .env
+[Bb]uild
 [Dd]ist/
 .DS_Store
