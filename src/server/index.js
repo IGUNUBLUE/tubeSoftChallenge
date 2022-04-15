@@ -10,6 +10,9 @@ import routes from "./routes";
 import sequelize from "./db";
 import winstonLogger from "./lib/logger";
 
+require("dotenv").config({ path: "./.env" });
+
+const { SEQUELIZE_FORCE, NODE_ENV } = process.env;
 let app = express();
 const log = winstonLogger();
 const debug = debugLib("api:server");
@@ -40,7 +43,9 @@ app.set("port", port);
  */
 
 sequelize
-	.sync({ force: false })
+	.sync({
+		force: NODE_ENV === "development" ? JSON.parse(SEQUELIZE_FORCE) : false,
+	})
 	.then(() => {
 		server.listen(port, () => {
 			log.info(`database connected`);
