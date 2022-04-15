@@ -13,15 +13,13 @@
 		"test:client": "react-app-rewired test",
 		"build:server": "babel src/server --out-dir build/server",
 		"start:server": "nodemon --exec babel-node src/server/index.js",
-		"start:dev": "yarn run start:server & yarn run start:client",
+		"start:dev": "yarn run start:client & yarn run start:server",
 		"build": "yarn run build:server && yarn run build:client"
 	},
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.14.1",
 		"@testing-library/react": "^13.0.0",
 		"@testing-library/user-event": "^13.2.1",
-		"react-scripts": "5.0.1",
-		"web-vitals": "^2.1.0",
 		"axios": "^0.26.1",
 		"cookie-parser": "^1.4.6",
 		"dotenv": "^16.0.0",
@@ -32,10 +30,13 @@
 		"pg": "^8.7.3",
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
+		"react-scripts": "5.0.1",
 		"sequelize": "^6.19.0",
+		"web-vitals": "^2.1.0",
 		"winston": "^3.7.2"
 	},
 	"devDependencies": {
+		"react-app-rewired": "^2.2.1",
 		"@babel/cli": "^7.8.4",
 		"@babel/core": "^7.9.0",
 		"@babel/node": "^7.8.7",
