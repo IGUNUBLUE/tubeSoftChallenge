@@ -14,7 +14,9 @@
 		"build:server": "babel src/server --out-dir build/server",
 		"start:server": "nodemon --exec babel-node src/server/index.js",
 		"start:dev": "yarn run start:client & yarn run start:server",
-		"build": "yarn run build:server && yarn run build:client"
+		"build": "yarn run build:server && yarn run build:client",
+		"add-demos": "npx sequelize-cli db:seed:all",
+    "remove-demos": "npx sequelize-cli db:seed:undo:all"
 	},
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.14.1",
