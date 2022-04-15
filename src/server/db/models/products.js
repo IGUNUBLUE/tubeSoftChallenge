@@ -1,15 +1,45 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes } from "sequelize";
 
-export default (sequelize) => {
-  sequelize.define('product', {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  },
-  {
-   timestamps: false, 
-  //  charset: 'utf8',
-  //  collate: 'utf8_general_ci', 
-  });
+const product = (sequelize) => {
+	sequelize.define(
+		"product",
+		{
+			name: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			color: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			size: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			price: {
+				type: DataTypes.NUMERIC(50, 2),
+				allowNull: false,
+			},
+			brand: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			model: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			gender: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			type: {
+				type: DataTypes.STRING,
+			},
+		},
+		{
+			timestamps: false,
+		}
+	);
 };
+
+export default product;

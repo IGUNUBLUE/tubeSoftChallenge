@@ -1,13 +1,14 @@
-require("dotenv").config({ path: "./.env" });
 import { Sequelize } from "sequelize";
 import { readdirSync } from "fs";
 import { basename as _basename, join } from "path";
+
+require("dotenv").config({ path: "./.env" });
 
 const environment = process.env.NODE_ENV || "development";
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT } = process.env;
 const prodConnectionParams = {
 	logging: false,
-	native: false,
+	native: true,
 	dialectOptions: {
 		ssl: {
 			require: true,
@@ -25,7 +26,7 @@ export const sequelize = new Sequelize(
 	`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
 	environment !== "production"
 		? {
-				logging: false, // set to console.log to see the raw SQL queries
+				logging: true, // set to console.log to see the raw SQL queries
 				native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 		  }
 		: prodConnectionParams
