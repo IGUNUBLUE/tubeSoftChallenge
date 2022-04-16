@@ -1,6 +1,13 @@
 import { alpha, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+	logo: {
+		boxShadow: theme.shadows[2],
+		backgroundColor: theme.palette.text.primary,
+		height: "55px",
+		borderRadius: "8px",
+		marginRight: "10px",
+	},
   grow: {
     flexGrow: 1,
   },

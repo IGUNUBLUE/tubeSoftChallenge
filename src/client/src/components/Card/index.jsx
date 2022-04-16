@@ -14,7 +14,7 @@ import { CardActionArea } from "@material-ui/core";
 
 import useStyles from "./styles";
 
-export default function RecipeReviewCard() {
+const CardComponent = ({ product }) => {
 	const classes = useStyles();
 	const [expanded, setExpanded] = useState(false);
 
@@ -27,16 +27,15 @@ export default function RecipeReviewCard() {
 			<CardActionArea>
 				<CardMedia
 					className={classes.media}
-					image="/static/images/cards/contemplative-reptile.jpg"
+					image={product.imageLink}
 					title="Contemplative Reptile"
 				/>
 				<CardContent>
 					<Typography gutterBottom variant="h5" component="h2">
-						Lizard
+						{product.name}
 					</Typography>
 					<Typography variant="body2" color="textSecondary" component="p">
-						Lizards are a widespread group of squamate reptiles, with over 6,000
-						species, ranging across all continents except Antarctica
+						{product.price} USD
 					</Typography>
 				</CardContent>
 			</CardActionArea>
@@ -60,13 +59,14 @@ export default function RecipeReviewCard() {
 			</CardActions>
 			<Collapse in={expanded} timeout="auto" unmountOnExit>
 				<CardContent>
-					<Typography paragraph>Method:</Typography>
+					<Typography paragraph></Typography>
 					<Typography paragraph>
-						Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-						set aside for 10 minutes.
+						
 					</Typography>
 				</CardContent>
 			</Collapse>
 		</Card>
 	);
 }
+
+export default CardComponent;

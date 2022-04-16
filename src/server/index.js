@@ -5,6 +5,7 @@ import logger from "morgan";
 import debugLib from "debug";
 import http from "http";
 import { existsSync } from "fs";
+import cors from "cors";
 
 import routes from "./routes";
 import sequelize from "./db";
@@ -18,6 +19,7 @@ const log = winstonLogger();
 const debug = debugLib("api:server");
 let server = http.createServer(app); // Create HTTP server.
 
+app.use(cors())
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

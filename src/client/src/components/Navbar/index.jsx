@@ -67,8 +67,8 @@ const Navbar = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={1} color="secondary">
+        <IconButton aria-label="cart notifications" color="inherit">
+          <Badge badgeContent={1} color="secondary" overlap='rectangular'>
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
@@ -92,10 +92,11 @@ const Navbar = () => {
     <div className={classes.grow}>
       <AppBar position="fixed" color='primary'>
         <Toolbar>
+					<img src='/images/TB_logo.png' alt="Logo tubesoft" className={classes.logo}/>
           <Typography className={classes.title} variant="h6" noWrap>
-            Search products
+            Tubesoft Store
           </Typography>
-          <div className={classes.search}>
+          {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -107,11 +108,11 @@ const Navbar = () => {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
+          </div> */}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="cart items" color="inherit">
-              <Badge badgeContent={1} color="secondary">
+              <Badge badgeContent={1} color="secondary" overlap='rectangular'>
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
