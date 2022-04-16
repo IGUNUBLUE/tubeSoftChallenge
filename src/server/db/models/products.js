@@ -33,6 +33,12 @@ const products = (sequelize) =>
 		type: {
 			type: DataTypes.STRING,
 		},
+		description: {
+			type: DataTypes.STRING,
+		},
+		imageLink: {
+			type: DataTypes.STRING
+		}
 	});
 
 export default products;
