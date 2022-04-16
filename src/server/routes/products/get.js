@@ -7,7 +7,6 @@ const { Products } = sequelize.models;
 router.get("/", async (req, res) => {
 	try {
 		const products = await Products.findAll();
-		console.log(products);
 
 		if (products === null) {
 			return res

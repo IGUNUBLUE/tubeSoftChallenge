@@ -1,5 +1,17 @@
+import { ThemeProvider } from "@material-ui/core";
+
+import useGlobalStyles from "../../theme/globalStyles";
+import theme from "../../theme";
+import Home from "../Home";
+
 function App() {
-	return <h1>Hello world</h1>;
+	useGlobalStyles();
+	
+	return (
+		<ThemeProvider theme={theme}>
+			<Home  />
+		</ThemeProvider>
+	);
 }
 
 export default App;
