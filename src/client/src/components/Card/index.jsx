@@ -7,8 +7,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
+import{ AddShoppingCart } from "@material-ui/icons";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { CardActionArea } from "@material-ui/core";
 
@@ -41,10 +40,7 @@ const CardComponent = ({ product }) => {
 			</CardActionArea>
 			<CardActions disableSpacing>
 				<IconButton aria-label="add to favorites">
-					<FavoriteIcon />
-				</IconButton>
-				<IconButton aria-label="share">
-					<ShareIcon />
+					<AddShoppingCart />
 				</IconButton>
 				<IconButton
 					className={clsx(classes.expand, {
@@ -59,14 +55,15 @@ const CardComponent = ({ product }) => {
 			</CardActions>
 			<Collapse in={expanded} timeout="auto" unmountOnExit>
 				<CardContent>
-					<Typography paragraph></Typography>
-					<Typography paragraph>
-						
-					</Typography>
+					<Typography paragraph>Color: {product.color}</Typography>
+					<Typography paragraph>Talla: {product.size}</Typography>
+					<Typography paragraph>Marca: {product.brand}</Typography>
+					<Typography paragraph>Genero: {product.gender}</Typography>
+					<Typography paragraph>Tipo: {product.type}</Typography>
 				</CardContent>
 			</Collapse>
 		</Card>
 	);
-}
+};
 
 export default CardComponent;
