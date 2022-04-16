@@ -10,7 +10,7 @@ Challenge to Tubesoft.
 ```terminal
 $ docker-compose up
 ```
-- Paso 2: Renombrar el .env.example a .env y agregar los datos necesarios para la conexión con postgres.
+- Paso 2: Renombrar el .env.example a .env y agregar los datos necesarios para la conexión con postgres. A continuación los datos por defecto:
 ```terminar
 	- DB_USER=postgres
 	- DB_PASSWORD=12345
