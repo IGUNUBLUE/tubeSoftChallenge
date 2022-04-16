@@ -1,7 +1,8 @@
-import { GET_PRODUCTS } from "../actions/types";
+import { GET_PRODUCTS, GET_USER, LOG_OUT } from "../actions/types";
 
 const initialState = {
 	products: [],
+	user: null,
 };
 
 function reducer(state = initialState, action) {
@@ -11,7 +12,16 @@ function reducer(state = initialState, action) {
 				...state,
 				products: action.payload,
 			};
-
+		case GET_USER:
+			return {
+				...state,
+				user: action.payload,
+			};
+		case LOG_OUT:
+			return {
+				...state,
+				user: action.payload,
+			};
 		default:
 			return state;
 	}

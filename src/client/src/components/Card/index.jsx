@@ -1,15 +1,23 @@
 import { useState } from "react";
 import clsx from "clsx";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import{ AddShoppingCart } from "@material-ui/icons";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { CardActionArea } from "@material-ui/core";
+import {
+	Card,
+	CardMedia,
+	CardContent,
+	CardActions,
+	Collapse,
+	IconButton,
+	Typography,
+	CardActionArea,
+	Badge,
+	Tooltip,
+} from "@material-ui/core";
+import {
+	AddShoppingCart,
+	RemoveShoppingCart,
+	ExpandMore,
+	ClearAll,
+} from "@material-ui/icons";
 
 import useStyles from "./styles";
 
@@ -39,9 +47,23 @@ const CardComponent = ({ product }) => {
 				</CardContent>
 			</CardActionArea>
 			<CardActions disableSpacing>
-				<IconButton aria-label="add to favorites">
-					<AddShoppingCart />
-				</IconButton>
+				<Tooltip title="Add" arrow>
+					<IconButton aria-label="add product">
+						<Badge badgeContent={1} color="primary" overlap="rectangular">
+							<AddShoppingCart />
+						</Badge>
+					</IconButton>
+				</Tooltip>
+				<Tooltip title="Remove one" arrow>
+					<IconButton aria-label="remove product">
+						<RemoveShoppingCart />
+					</IconButton>
+				</Tooltip>
+				<Tooltip title="Clear all" arrow>
+					<IconButton aria-label="clear all products">
+						<ClearAll />
+					</IconButton>
+				</Tooltip>
 				<IconButton
 					className={clsx(classes.expand, {
 						[classes.expandOpen]: expanded,
@@ -50,7 +72,7 @@ const CardComponent = ({ product }) => {
 					aria-expanded={expanded}
 					aria-label="show more"
 				>
-					<ExpandMoreIcon />
+					<ExpandMore />
 				</IconButton>
 			</CardActions>
 			<Collapse in={expanded} timeout="auto" unmountOnExit>
