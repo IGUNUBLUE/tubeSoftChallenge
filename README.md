@@ -59,6 +59,3 @@ $ yarn remove-demos
 	- email: "lenin.doe@challenge.tubesoft"
 		password: "1a2b3c"
 ```
-
-
-
