@@ -15,9 +15,9 @@ router.post("/", async (req, res) => {
 
 		if (user === null) {
 			return res.status(200).json({ message: "user found" });
-		} else {
-			return res.status(200).json(user);
 		}
+		 
+		return res.status(200).json(user);
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: "Internal server error", status: 500 });
