@@ -4,8 +4,8 @@ const associations = (sequelize) => {
 	Products.belongsToMany(Carts, { through: "products_carts" });
 	Carts.belongsToMany(Products, { through: "products_carts" });
 	// user | cart
-	Users.belongsToMany(Carts, { through: "users_carts" });
-	Carts.belongsTo(Users, { through: "users_carts" });
+	Users.hasMany(Carts);
+	Carts.belongsTo(Users);
 };
 
 export default associations;
