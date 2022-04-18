@@ -1,8 +1,16 @@
-import { GET_PRODUCTS, GET_USER, LOG_OUT } from "../actions/types";
+import {
+	CLEAR_CART,
+	CREATE_CART,
+	GET_CARTS,
+	GET_PRODUCTS,
+	GET_USER,
+	LOG_OUT,
+} from "../actions/types";
 
 const initialState = {
 	products: [],
 	user: null,
+	carts: [],
 };
 
 function reducer(state = initialState, action) {
@@ -21,6 +29,21 @@ function reducer(state = initialState, action) {
 			return {
 				...state,
 				user: action.payload,
+			};
+		case CREATE_CART:
+			return {
+				...state,
+				carts: action.payload,
+			};
+		case GET_CARTS:
+			return {
+				...state,
+				carts: action.payload,
+			};
+		case CLEAR_CART:
+			return {
+				...state,
+				carts: action.payload,
 			};
 		default:
 			return state;

@@ -1,20 +1,21 @@
-import { useEffect, useId } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useId, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Box, Grid } from "@material-ui/core";
 
 import useStyles from "./styles";
 import Navbar from "../Navbar";
 import CardComponent from "../Card";
-import { getProducts } from "../../store/actions";
+import findCurrentCart from "../../utils/findCurrentCart";
 
 const Home = () => {
 	const navigate = useNavigate();
 	const prefixId = useId();
-	const dispatch = useDispatch();
 	const classes = useStyles();
 	const products = useSelector((state) => state.products);
 	const user = useSelector((state) => state.user);
+	const carts = useSelector((state) => state.carts);
+	const [totalCartItems, setTotalCartItems] = useState(0);
 	// verify login
 	useEffect(() => {
 		if (!user) {
@@ -22,16 +23,23 @@ const Home = () => {
 		} else {
 			if (!user.email) {
 				navigate("/");
-			} else {
-				dispatch(getProducts());
 			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+	// Total cart Items
+	useEffect(() => {
+		const currentCart = findCurrentCart(carts);
+
+		if (currentCart && currentCart.products && currentCart.products.length) {
+			setTotalCartItems(currentCart.products.length);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
 		<Box className={classes.mainBox}>
-			<Navbar />
+			<Navbar totalCartItems={totalCartItems} />
 			<Grid container spacing={5}>
 				{products && products.length ? (
 					products.map((product) => (

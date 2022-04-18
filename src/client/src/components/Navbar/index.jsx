@@ -15,7 +15,7 @@ import { AccountCircle, ShoppingCart, More } from "@material-ui/icons";
 import useStyles from "./styles";
 import { logOut } from "../../store/actions";
 
-const Navbar = () => {
+const Navbar = ({ totalCartItems }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const classes = useStyles();
@@ -43,11 +43,11 @@ const Navbar = () => {
 	};
 
 	const handleLogOut = () => {
-		dispatch(logOut())
-		handleMenuClose()
-		
-		return navigate("/")
-	}
+		dispatch(logOut());
+		handleMenuClose();
+
+		return navigate("/");
+	};
 
 	const menuId = "primary-search-account-menu";
 	const renderMenu = (
@@ -77,7 +77,7 @@ const Navbar = () => {
 		>
 			<MenuItem>
 				<IconButton aria-label="cart notifications" color="inherit">
-					<Badge badgeContent={1} color="secondary" overlap="rectangular">
+					<Badge badgeContent={totalCartItems} color="secondary" overlap="rectangular">
 						<ShoppingCart />
 					</Badge>
 				</IconButton>
@@ -112,7 +112,7 @@ const Navbar = () => {
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
 						<IconButton aria-label="cart items" color="inherit">
-							<Badge badgeContent={1} color="secondary" overlap="rectangular">
+							<Badge badgeContent={totalCartItems} color="secondary" overlap="rectangular">
 								<ShoppingCart />
 							</Badge>
 						</IconButton>

@@ -12,9 +12,7 @@ router.get("/", async (req, res) => {
 			return res.status(200).json(products);
 		}
 
-		return res
-			.status(204)
-			.json({ message: "The request did not find results" });
+		return res.status(200).json([]);
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: "Internal server error", status: 500 });

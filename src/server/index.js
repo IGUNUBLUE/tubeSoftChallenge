@@ -27,13 +27,13 @@ app.use(cookieParser());
 
 // routes
 app.use("/api", routes);
-app.get("*", (_, res) => {
-	if (existsSync(path.join(__dirname, "build", "index.html"))) {
-		res.sendFile(path.join(__dirname, "build", "index.html"));
-	} else {
-		res.sendFile(path.join(__dirname, "../client/public", "index.html"));
-	}
-});
+// app.get("*", (_, res) => {
+// 	if (existsSync(path.join(__dirname, "build", "index.html"))) {
+// 		res.sendFile(path.join(__dirname, "build", "index.html"));
+// 	} else {
+// 		res.sendFile(path.join(__dirname, "../client/public", "index.html"));
+// 	}
+// });
 
 // Get port from environment and store in Express.
 var port = normalizePort(process.env.PORT || "3001");

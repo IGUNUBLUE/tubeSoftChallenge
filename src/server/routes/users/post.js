@@ -14,9 +14,9 @@ router.post("/", async (req, res) => {
 		});
 
 		if (user === null) {
-			return res.status(200).json({ message: "user found" });
+			return res.status(200).json({});
 		}
-		 
+
 		return res.status(200).json(user);
 	} catch (error) {
 		console.log(error);

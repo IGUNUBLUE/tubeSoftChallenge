@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import {
 	Card,
@@ -20,22 +21,72 @@ import {
 } from "@material-ui/icons";
 
 import useStyles from "./styles";
+import { createCart } from "../../store/actions";
+import findCurrentCart from "../../utils/findCurrentCart";
 
 const CardComponent = ({ product }) => {
+	const dispatch = useDispatch();
 	const classes = useStyles();
 	const [expanded, setExpanded] = useState(false);
+	const [badgeNumber, setBudgeNumber] = useState(0);
+	const carts = useSelector((state) => state.carts);
+	const user = useSelector((state) => state.user);
+
+	useEffect(() => {
+		const currentCart = findCurrentCart(carts)
+
+		if (currentCart.products) {
+			const foundProduct = currentCart.products.find(
+				(p) => p.id === product.id
+			);
+
+			if (foundProduct) {
+				return setBudgeNumber(foundProduct.products_carts.quantity);
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};
 
+	const handleAddToCart = (productId, price) => () => {
+		if (!carts.length) {
+			const cartItem = {
+				isCurrent: true,
+				state: "open",
+				paymentState: "unpaid",
+				total: price,
+				userId: user.id,
+				price,
+				productId,
+			};
+			dispatch(createCart(cartItem));
+			setBudgeNumber(1);
+		}
+	};
+
+	// const handleBadgeNumber = () => {
+	// 	if (currentCart.products) {
+	// 		const foundProduct = currentCart.products.find(
+	// 			(p) => p.id === product.id
+	// 		);
+
+	// 		if (foundProduct) {
+	// 			return foundProduct.products_carts.quantity;
+	// 		}
+	// 	}
+
+	// 	return 0;
+	// };
 	return (
 		<Card className={classes.root}>
 			<CardActionArea>
 				<CardMedia
 					className={classes.media}
 					image={product.imageLink}
-					title="Contemplative Reptile"
+					title={product.name}
 				/>
 				<CardContent>
 					<Typography gutterBottom variant="h5" component="h2">
@@ -48,8 +99,15 @@ const CardComponent = ({ product }) => {
 			</CardActionArea>
 			<CardActions disableSpacing>
 				<Tooltip title="Add" arrow>
-					<IconButton aria-label="add product">
-						<Badge badgeContent={1} color="primary" overlap="rectangular">
+					<IconButton
+						aria-label="add product"
+						onClick={handleAddToCart(product.id, product.price)}
+					>
+						<Badge
+							badgeContent={badgeNumber}
+							color="primary"
+							overlap="rectangular"
+						>
 							<AddShoppingCart />
 						</Badge>
 					</IconButton>
